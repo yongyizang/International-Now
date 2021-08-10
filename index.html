@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>International Now - Inspired By 风暴眼 - INTO1</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <style>
+    html,
+    body {
+      background-color: #224EA1;
+      color: #8FFFED;
+    }
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body onload="updateEverything">
+
+  <div class="col-lg-8 mx-auto p-3 py-md-5">
+    <header class="d-flex justify-content-between pb-3 mb-5 border-bottom">
+      <a href="/" class="d-flex align-items-center text-light text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-globe"
+          viewBox="0 0 16 16" style="margin-right:5px">
+          <path
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+        </svg>
+        <span class="fs-4">International Now</span>
+      </a>
+      <span class="d-flex align-items-center text-light text-decoration-none"
+        style="font-size:0.6em">灵感来自《风暴眼》@INTO1</span>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="mb-3">
+          <label for="originalText" class="form-label">在这里输入等待转换的歌词：</label>
+          <textarea class="form-control" id="originalText" rows="5"></textarea>
+          <p style="margin-top:2em;">设置自动生成选项：</p>
+          <div class="d-flex justify-content-between">
+            <div>
+              <input class="form-check-input" type="checkbox" value="" id="goForItReplacement">
+              <label class="form-check-label" for="goForItReplacement">
+                随机小学英语词汇替换
+              </label>
+            </div>
+            <div>
+              <input class="form-check-input" type="checkbox" value="" id="yeahReplacement">
+              <label class="form-check-label" for="yeahReplacement">
+                随机句首，句尾语气词
+              </label>
+            </div>
+            <div>
+              <input class="form-check-input" type="checkbox" value="" id="happyReplacement">
+              <label class="form-check-label" for="happyReplacement">
+                随机励志英文话
+              </label>
+            </div>
+          </div>
+          <br />
+          <button type="button" id="intNow" class="btn btn-outline-light" style="width:100%">立刻国际化</button>
+          <label  style="margin-top:2em;" for="intedText" class="form-label">转换完成的歌词会在这里：</label>
+          <textarea class="form-control" id="intedText" rows="5"></textarea>
+        </div>
+        
+      </div>
+    </main>
+    <footer class="pt-5 my-5 border-top">
+      由臧无尤 (@臧无尤、@mrmrmrfinch) 编写。
+      <a href="https://space.bilibili.com/11252239">bilibili</a>
+      <a href="https://weibo.com/u/6978469211">微博</a>
+      <a href="">本项目的 repo</a>
+    </footer>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
+  <script>
+    var original = $("#originalText").val();
+    if ($('#goForItReplacement').is(":checked")) {
+      var basicEnglishEducation = 1;
+    };
+    if ($('#yeahReplacement').is(":checked")) {
+      var basicHumanUnderstanding = 1;
+    };
+    if ($('#happyReplacement').is(":checked")) {
+      var basicBusinessModel = 1;
+    };
+
+    function updateEverything() {
+      original = $("#originalText").val();
+      if ($('#goForItReplacement').is(":checked")) {
+        basicEnglishEducation = 1;
+      };
+      if ($('#yeahReplacement').is(":checked")) {
+        basicHumanUnderstanding = 1;
+      };
+      if ($('#happyReplacement').is(":checked")) {
+        basicBusinessModel = 1;
+      };
+    };
+
+    var basicEnglishDictionary = {
+      // TODO: sort this into proper order.
+      "我们": "We",
+      "世界": "World",
+      "因为": "Cuz",
+      "好": "Good",
+      "棒": "Wonderful",
+      "车": "Car",
+      "钢笔": "Pen",
+      "蜡笔": "crayon",
+      "笔": "pencil",
+      "我": "I",
+      "你": "U",
+      "他": "He",
+      "她": "She",
+      "尺": "ruler",
+      "橡皮": "eraser",
+      "书": "book",
+      "包": "bag",
+      "刀": "sharpener",
+      "学校": "school",
+      "头": "head",
+      "脸": "face",
+      "鼻": "nose",
+      "嘴": "mouth",
+      "眼": "eye",
+      "耳": "ear",
+      "胳膊": "arm",
+      "猴子": "monkey",
+      "熊猫": "panda",
+      "兔子": "rabbit",
+      "鸭子": "duck",
+      "大象": "elephant",
+      "老鼠": "mouse",
+      "松鼠": "squirrel",
+      "蛋糕": "cake",
+      "面包": "bread",
+      "热狗": "hot",
+      "汉堡包": "hamburger",
+      "炸薯条": "fries",
+      "可乐": "Coke",
+      "果汁": "juice",
+      "牛奶": "milk",
+      "咖啡": "coffee",
+      "水": "water",
+      "茶": "tea",
+      "指": "finger",
+      "腿": "leg",
+      "脚": "foot",
+      "身体": "body",
+      "红": "red",
+      "黄": "yellow",
+      "绿": "green",
+      "猪": "pig",
+      "鸟": "bird",
+      "熊": "bear",
+      "蓝": "blue",
+      "紫": "purple",
+      "白": "white",
+      "黑": "black",
+      "橙": "orange",
+      "粉": "pink",
+      "棕": "brown",
+      "猫": "cat",
+      "狗": "dog",
+      "一": "one",
+      "二": "two",
+      "三": "three",
+      "四": "four",
+      "五": "five",
+      "六": "six",
+      "七": "seven",
+      "八": "eight",
+      "九": "nine",
+      "十": "ten",
+      "娃娃": "doll",
+      "小船": "boat",
+      "球": "ball",
+      "风筝": "kite",
+      "气球": "balloon",
+      "小汽车": "car",
+      "飞机": "plane",
+      "男孩": "boy",
+      "女孩": "girl",
+      "教师": "teacher",
+      "学生": "student",
+      "再见": "goodbye",
+      "也": "too",
+      "爸爸": "father",
+      "爸": "dad",
+      "妈妈": "mother",
+      "妈": "mom",
+      "男": "man",
+      "女": "woman",
+      "姐": "sister",
+      "兄": "brother",
+      "真": "really",
+      "和": "and",
+      "怎么": "how",
+      "十一": "eleven",
+      "十二": "twelve",
+      "十三": "thirteen",
+      "十四": "fourteen",
+      "十五": "fifteen",
+      "十六": "sixteen",
+      "十七": "seventeen",
+      "十八": "eighteen",
+      "十九": "nineteen",
+      "二十": "twenty",
+      "桃": "peach",
+      "梨": "pear",
+      "橙子": "orange",
+      "西瓜": "watermelon",
+      "苹果": "apple",
+      "香蕉": "banana",
+      "草莓": "strawberry",
+      "葡萄": "grape",
+      "喜欢": "like",
+      "一些": "some",
+      "谢": "thanks",
+      "公共汽车": "bus",
+      "自行车": "bike",
+      "出租车": "taxi",
+      "吉普车": "jeep",
+      "课桌": "desk",
+      "椅子": "chair",
+      "台灯": "lamp",
+      "动物园": "zoo",
+      "小": "small",
+      "大": "big",
+      "长": "long",
+      "短": "short",
+      "高": "tall",
+      "鹿": "deer",
+      "窗": "window",
+      "板": "board",
+      "灯": "light",
+      "画": "picture",
+      "门": "door",
+      "地板": "floor",
+      "教室": "classroom",
+      "许多的": "many",
+      "我们的": "our",
+      "同学": "classmate",
+      "座位": "seat",
+      "近": "near",
+      "新的": "new",
+      "在哪里": "where",
+      "计算机": "computer",
+      "桌子": "desk",
+      "墙": "wall",
+      "扇": "fan",
+      "打扫": "clean"
+    };
+
+    const getHappy = [
+      "Now We Get Going",
+      "This is fun",
+      "Gimme a gimme a smile",
+      "And we dance now",
+      "I say come on",
+      "Come on, give me more",
+      "You know what you want",
+      "Go for it, Go for it",
+      "Don't be afraid",
+      "Facing it, here we are",
+      "Gimme a hug",
+      "We are going to Wonderland",
+      "Fighting to the top",
+      "Never say never",
+      "Always getting better",
+      "Gimme that big smile",
+      "What do you want?",
+      "Ask yourself, ask yourself",
+      "Facing the clouds",
+      "And we fight now"
+    ]
+
+    function text2lines(originalText) {
+      return originalText.split("\n");
+    }
+
+    function lines2text(lines) {
+      return lines.join("\n");
+    }
+
+    function englishEdu(original) {
+      for (const [key, value] of Object.entries(basicEnglishDictionary)) {
+        original = original.replace(new RegExp(key, 'g'), " " + value + " ");
+      }
+      return original.replace(/  +/g, ' ');
+    }
+
+    function humanEdu(original) {
+      original = text2lines(original);
+      var educated = original.map(function(element){
+        if (Math.random() > 0.8){
+          return ["ei", "Yeah", "Oh", "Okay", "Love", "Peace", "Skr"][Math.floor(Math.random() * 7)] + " " + element;
+        } else if (Math.random() < 0.3){
+          return element + " " + ["ei", "Yeah", "Oh", "Okay", "Love", "Peace", "Skr"][Math.floor(Math.random() * 7)];
+        } else {
+          return element;
+        }
+      });
+      return lines2text(educated);
+    }
+
+    function happyhappyhappy(original){
+      original = text2lines(original);
+      for (var i = 0; i < Math.random()*10; i++){
+        original.splice(Math.floor(Math.random()*original.length), 0, getHappy[Math.floor(Math.random()*getHappy.length)]);
+      };
+      return lines2text(original);
+    }
+
+    $(document).ready(function () {
+      // Get everything.
+      updateEverything();
+      $("#intNow").click(function () {
+        updateEverything();
+        var replaced = original;
+        if (basicEnglishEducation) replaced = englishEdu(replaced);
+        if (basicHumanUnderstanding) replaced = humanEdu(replaced);
+        if (basicBusinessModel) replaced = happyhappyhappy(replaced);
+        $('#intedText').val(replaced);
+      });
+    });
+  </script>
+
+</body>
+
+</html>

@@ -76,17 +76,17 @@
           </div>
           <br />
           <button type="button" id="intNow" class="btn btn-outline-light" style="width:100%">立刻国际化</button>
-          <label  style="margin-top:2em;" for="intedText" class="form-label">转换完成的歌词会在这里：</label>
+          <label style="margin-top:2em;" for="intedText" class="form-label">转换完成的歌词会在这里：</label>
           <textarea class="form-control" id="intedText" rows="5"></textarea>
         </div>
-        
+
       </div>
     </main>
     <footer class="pt-5 my-5 border-top">
       由臧无尤 (@臧无尤、@mrmrmrfinch) 编写。
       <a href="https://space.bilibili.com/11252239">bilibili</a>
       <a href="https://weibo.com/u/6978469211">微博</a>
-      <a href="">本项目的 repo</a>
+      <a href="https://github.com/mrmrmrfinch/International-Now">本项目的 repo</a>
     </footer>
   </div>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
@@ -95,6 +95,12 @@
     crossorigin="anonymous"></script>
 
   <script>
+
+    // Chance should be between 0 and 1.
+    const startSentenceWithSlurChance = 0.2
+    const endSentenceWithSlurChance = 0.3
+
+
     var original = $("#originalText").val();
     if ($('#goForItReplacement').is(":checked")) {
       var basicEnglishEducation = 1;
@@ -120,10 +126,15 @@
     };
 
     var basicEnglishDictionary = {
-      // TODO: sort this into proper order.
+      /*
+        basicEnglishDictionary:
+        this is derived from Grade 3 English Textbook.
+        It's a partial english dictionary.
+      */
       "我们": "We",
       "世界": "World",
       "因为": "Cuz",
+      "梦": "Dream",
       "好": "Good",
       "棒": "Wonderful",
       "车": "Car",
@@ -274,7 +285,32 @@
       "打扫": "clean"
     };
 
+    const slurs = [
+      "ei",
+      "Yeah",
+      "Oh",
+      "Okay",
+      "Love",
+      "Peace",
+      "Skr",
+      "Come On",
+      "Now",
+      "Please",
+      "Smile",
+      "Happy",
+      "Dancing",
+      "Moonlight",
+      "Competition",
+      "Running",
+      "Fighting",
+      "Here"
+    ]
+
     const getHappy = [
+      /*
+        getHappy: an array of really positive english phrases,
+        commonly appear in asia pop songs.
+      */
       "Now We Get Going",
       "This is fun",
       "Gimme a gimme a smile",
@@ -297,6 +333,8 @@
       "And we fight now"
     ]
 
+    // Utility functions: text2lines and lines2text
+
     function text2lines(originalText) {
       return originalText.split("\n");
     }
@@ -305,6 +343,8 @@
       return lines.join("\n");
     }
 
+    // englishEdu(): provides basic english education.
+    // Replace all keywords.
     function englishEdu(original) {
       for (const [key, value] of Object.entries(basicEnglishDictionary)) {
         original = original.replace(new RegExp(key, 'g'), " " + value + " ");
@@ -314,11 +354,11 @@
 
     function humanEdu(original) {
       original = text2lines(original);
-      var educated = original.map(function(element){
-        if (Math.random() > 0.8){
-          return ["ei", "Yeah", "Oh", "Okay", "Love", "Peace", "Skr"][Math.floor(Math.random() * 7)] + " " + element;
-        } else if (Math.random() < 0.3){
-          return element + " " + ["ei", "Yeah", "Oh", "Okay", "Love", "Peace", "Skr"][Math.floor(Math.random() * 7)];
+      var educated = original.map(function (element) {
+        if (Math.random() > (1 - startSentenceWithSlurChance)) {
+          return slurs[Math.floor(Math.random() * slurs.length)] + " " + element;
+        } else if (Math.random() < endSentenceWithSlurChance) {
+          return element + " " + slurs[Math.floor(Math.random() * slurs.length)];
         } else {
           return element;
         }
@@ -326,10 +366,10 @@
       return lines2text(educated);
     }
 
-    function happyhappyhappy(original){
+    function happyhappyhappy(original) {
       original = text2lines(original);
-      for (var i = 0; i < Math.random()*10; i++){
-        original.splice(Math.floor(Math.random()*original.length), 0, getHappy[Math.floor(Math.random()*getHappy.length)]);
+      for (var i = 0; i < Math.random() * 10; i++) {
+        original.splice(Math.floor(Math.random() * original.length), 0, getHappy[Math.floor(Math.random() * getHappy.length)]);
       };
       return lines2text(original);
     }
